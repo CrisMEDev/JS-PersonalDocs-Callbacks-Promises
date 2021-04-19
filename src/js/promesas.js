@@ -30,6 +30,21 @@ export const buscarHeroe = ( id ) => {
 
 }
 
+export const buscarHeroeAsync = async ( id ) => {  // El async por defecto siempre estará devolviendo un new Promise como la funcion
+                                                   // anterior.    
+
+    const heroe = heroes[id];
+    
+    if ( heroe ){
+        return heroe;   // Como hacer un resolve(heroe) de la funcion escrita arriba
+    } else {
+        throw `No existe un héroe con el id ${ id }`;
+        // throw Error(`No existe un héroe con el id ${ id }`); // Esta forma se usa cuando no se sabe porque dara un error
+                                                                // es mas descriptica con los archivos donde se presento el error
+    }
+
+}
+
 const promesaLenta = new Promise( ( resolve, reject ) => {
     setTimeout(() => {
         resolve('Promesa lenta');
