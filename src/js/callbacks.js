@@ -17,6 +17,13 @@ export const buscarHeroe = ( id, callback ) => {
 
     const heroe = heroes[id];
 
-    callback( heroe );
+    if ( heroe ){
+        callback( null, heroe );    // Se manda null indicando que como el primer argumento es un error no lo presento al
+                                    // realizar la búsqueda en el callback
+    }
+    else{
+        callback( `No existe un héroe con el id ${ id }` );
+    }
+
 
 }
