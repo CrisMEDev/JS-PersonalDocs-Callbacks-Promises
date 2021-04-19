@@ -1,7 +1,8 @@
-import { f_saludar } from './js/componenetes.js';
+import { buscarHeroe } from './js/callbacks'
 import './styles.css';
 
-const nombre = 'Cristian!'
+const heroeId = 'capi';
 
-f_saludar(nombre);
-
+buscarHeroe( heroeId,  ( heroe ) => {
+    console.log( heroe );
+});
