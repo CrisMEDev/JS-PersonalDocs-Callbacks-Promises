@@ -4,6 +4,9 @@ const heroesIds = [ 'capi', 'iron', 'spider'];
 
 export const obtenerHeroesArr = async () => {
 
+    return await Promise.all( heroesIds.map( buscarHeroeAsync ) );      // Esto es la forma corta de hacerlo a como se hace en las 
+                                                                        // lineas 10 a 21
+
     const heroesArr = [];
 
     for ( const heroe of heroesIds ){
@@ -11,12 +14,11 @@ export const obtenerHeroesArr = async () => {
         // .then( heroe => {heroesArr.push( heroe );});   // Como es una promesa que en el mejor de lso casos resuelve un heroe,
                                                        // se puede asignar a una variable y evitar asignar en el then
 
-        const heroeAsync = await buscarHeroeAsync( heroe );     // await espera a que la promesa se resuelva
+        heroesArr.push( buscarHeroeAsync( heroe ) );
 
-        heroesArr.push( heroeAsync );
     }
 
-    return heroesArr;
+    return await Promise.all(heroesArr);
 
 };
 
