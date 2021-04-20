@@ -1,7 +1,9 @@
 
-# Webpack starter
+# Callbacks y promesas
 
-Este es el proyecto inicial para crear aplicaciones usando webpack.
+Este repositorio contiene fragmentos de código que explican el uso de callbacks y promesas en JavaScript.
+
+
 
 ### Notas:
 
