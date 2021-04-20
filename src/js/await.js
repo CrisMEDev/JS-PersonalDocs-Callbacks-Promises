@@ -1,6 +1,9 @@
-import { buscarHeroeAsync } from "./promesas";
+import { buscarHeroe, buscarHeroeAsync } from "./promesas";
 
 const heroesIds = [ 'capi', 'iron', 'spider'];
+
+const heroesPromesas = heroesIds.map( buscarHeroe );
+// const heroesPromesas = heroesIds.map( id => buscarHeroe(id) );
 
 export const obtenerHeroesArr = async () => {
 
@@ -44,5 +47,31 @@ export const obtenerHeroeAwait = async( id ) => {
     }
 
 
+}
+
+export const heroesCiclo = async() => {
+    console.time('HeroesCiclo');
+
+    // Este for es lo mismo que las 2 lineas comentadas debajo
+    for await ( const heroe of heroesPromesas ){
+        console.log(heroe);
+    }
+    // const heroes = await Promise.all( heroesPromesas );
+    // heroes.forEach( heroe => console.log(heroe) );
+
+
+    // heroesPromesas.forEach( async(promise) => console.log( await promise ) );   // Este codigo se ejecuta cuando se terminan de
+                                                                                // ejecutar todas las promesas pero se sigue
+                                                                                // el codigo principal de la funcion
+
+    console.timeEnd('HeroesCiclo');
+}
+
+export const heroeIfAwait = async(id) => {
+    if ( (await buscarHeroeAsync(id))['nombre'] === 'Ironman' ){    // lo mismo que: (await buscarHeroeAsync(id)).nombre
+        console.log('Es el mejor de todos');
+    } else {
+        console.log('Naaaaaa');
+    }
 }
 
